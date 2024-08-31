@@ -1,13 +1,11 @@
-/* global marked */
 import React, { Component } from 'react';
-
+import {marked} from 'marked';
 
 class App extends Component {
   constructor (props) {
-    super(props)
+    super(props) 
     this.state = {
       input: "",
-     // preview: "",
     }
     this.handleChange = this.handleChange.bind(this);
   };
@@ -16,10 +14,11 @@ class App extends Component {
     this.setState({
       input: event.target.value,     
     });
+    console.log(this.state.input);
   }
 
   renderMarkdown (preview) {
-    return { __html: marked(preview)}; // Use the global marked variable
+    return { __html: marked(preview)};
   }
 
   render () {
@@ -33,7 +32,7 @@ class App extends Component {
           </div>
           <div className='half'>
             <h3>This is your preview:</h3>
-            <div id='preview' dangerouslySetInnerHTML={this.renderMarkdown(this.state.preview)}></div>
+            <div id='preview' dangerouslySetInnerHTML={this.renderMarkdown(this.state.input)}></div>
           </div>
         </div>
       </div>
